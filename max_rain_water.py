@@ -13,3 +13,23 @@ class Solution:
         return max_water
 
     
+# optimised 
+
+
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        
+        max_water=0
+        s=len(height)
+        left=0
+        right=len(height)-1
+        
+
+        while left <right:
+            water_level=min(height[left],height[right]) * (right- left)
+            max_water=max(water_level,max_water)
+            if height[left] <height[right]:
+                left=left+1
+            else:
+                right=right-1
+        return max_water
