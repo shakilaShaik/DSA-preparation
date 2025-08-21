@@ -31,6 +31,20 @@ class Solution:
             if city in end_cities:
                 return city
         
+    //chatgpt solution 
+        class Solution:
+    def destCity(self, paths: List[List[str]]) -> str:
+        starts = set()
+        ends = set()
+
+        for start, end in paths:
+            starts.add(start)
+            ends.add(end)
+
+        # Destination city = in ends but not in starts
+        return (ends - starts).pop()
+        
       
+        
         
         
