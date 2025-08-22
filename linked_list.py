@@ -50,3 +50,60 @@ shammu_ll.insert_at_begin(26)
 shammu_ll.insert_at_begin(28)
 shammu_ll.print_list()
 
+
+
+
+from typing import Optional
+
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class MySumList:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode()
+        current = dummy
+        carry = 0
+
+        while l1 or l2 or carry:
+            x = l1.val if l1 else 0
+            y = l2.val if l2 else 0
+            total = x + y + carry
+
+            carry = total // 10
+            value = total % 10
+            current.next = ListNode(value)
+            current = current.next
+
+            if l1: l1 = l1.next
+            if l2: l2 = l2.next
+
+        return dummy.next
+
+# Helper function: Convert list → linked list
+def list_to_linked(lst):
+    dummy = ListNode()
+    current = dummy
+    for val in lst:
+        current.next = ListNode(val)
+        current = current.next
+    return dummy.next
+
+# Helper function: Convert linked list → list
+def linked_to_list(node):
+    result = []
+    while node:
+        result.append(node.val)
+        node = node.next
+    return result
+
+
+# Example usage:
+myObj = MySumList()
+l1 = list_to_linked([1,5,7])
+l2 = list_to_linked([1,4,2])
+res = myObj.addTwoNumbers(l1, l2)
+
+print(linked_to_list(res))  # [2, 9, 9]
