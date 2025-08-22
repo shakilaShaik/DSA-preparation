@@ -9,7 +9,11 @@ class LinkedList:
     def __init__(self):
         self.head=None
     def insert_at_begin(self,data):
+        
         new_node=Node(data)
+        if self.head=None:
+            self.head=new_node   // if there is no node present
+            return
         new_node.next=self.head
         self.head=new_node
     def insert_at_end(self,data):
